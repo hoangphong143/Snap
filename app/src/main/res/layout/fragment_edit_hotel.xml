@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admins.snaphotel.Activities.MainActivity"
+    android:background="#fff">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                android:id="@+id/sc_view">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ln_image"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/add_photo"
+                        android:id="@+id/iv_addphoto"/>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="* Tên nhà nghỉ"
+                android:textColor="@color/orange"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/et_tenadd"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Tên nhà nghỉ không được để trống"
+                android:textSize="10sp"
+                android:textColor="@color/orange"
+                android:id="@+id/tv_thongbaoten"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="* Địa chỉ"
+                android:textColor="@color/orange"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/et_diachiadd"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Địa chỉ không được để trống"
+                android:textSize="10sp"
+                android:textColor="@color/orange"
+                android:id="@+id/tv_thongbaodiachi"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="* Số điện thoại"
+                android:textColor="@color/orange"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:id="@+id/tv_sdt1add1"
+                android:layout_marginTop="8dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:inputType="phone"
+                android:layout_marginRight="16dp"
+                android:id="@+id/et_sdt1add"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="* Giá"
+                android:textColor="@color/orange"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
+
+            <EditText
+                android:id="@+id/et_giaadd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:inputType="numberDecimal"
+                android:layout_marginRight="16dp"
+                android:hint="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="10,000-20,000"
+                android:textSize="10sp"
+
+                android:textColor="@color/orange"
+
+                android:id="@+id/tv_thongbaogia"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="* Tiện ích"
+                android:textColor="@color/orange"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/ln_dieuhoa">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/air_conditioner"
+                        android:id="@+id/iv_dieuhoaadd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="Điều hòa"
+                        android:textColor="@color/orange"
+                        android:textStyle="bold"
+                        android:id="@+id/tv_dieuhoaadd"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/ln_wifi">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/wifi"
+                        android:id="@+id/iv_wifiadd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="Wifi"
+                        android:textColor="@color/orange"
+                        android:textStyle="bold"
+                        android:id="@+id/tv_wifiadd"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/ln_nonglanh">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/heater"
+                        android:id="@+id/iv_nonglanhadd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="Nóng lạnh"
+                        android:textColor="@color/orange"
+                        android:id="@+id/tv_nonglanhadd"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/ln_tivi">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/tivi"
+                        android:id="@+id/iv_tiviadd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="Tivi"
+                        android:textColor="@color/orange"
+                        android:textStyle="bold"
+                        android:id="@+id/tv_tiviadd"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/ln_tulanh">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/tulanh"
+                        android:id="@+id/iv_tulanhadd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="Tủ lạnh"
+                        android:textColor="@color/orange"
+                        android:textStyle="bold"
+                        android:id="@+id/tv_tulanhadd"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/ln_thangmay">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/elevator"
+                        android:id="@+id/iv_thangmayadd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="Thang máy"
+                        android:textColor="@color/orange"
+                        android:id="@+id/tv_thangmayadd"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Vị trí trên bản đồ"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/tv_vitribando"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="kinh do"
+                android:inputType="number"
+                android:id="@+id/et_kinhdoadd"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="vi do"
+                android:inputType="number"
+                android:id="@+id/et_vidoadd"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="rate"
+                android:id="@+id/et_rateadd"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Sửa nhà nghỉ"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:id="@+id/bt_danghotel"
+                android:background="@drawable/dk"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

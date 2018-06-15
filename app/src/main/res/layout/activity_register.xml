@@ -1,0 +1,173 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nen_dang_nhap"
+    tools:context="com.example.nguyenducanhit.hotelhunter2.activities.RegisterActivity">
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/ll_input"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:weightSum="4"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_weight="1.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:gravity="end|bottom"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0.7"
+                    android:text="Tên"
+                    android:textColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:gravity="end|bottom"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Email"
+                    android:textColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:gravity="end|bottom"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Mật khẩu"
+                    android:textColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:gravity="end|bottom"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Nhập lại"
+                    android:textColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:weightSum="4"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/et_name"
+                    android:textColor="#fff"
+                    android:backgroundTint="#fff"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:id="@+id/tv_checkName"
+                    android:visibility="invisible"
+                    android:textColor="#fff"
+                    android:text="Không được để trống"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/et_emailDK"
+                    android:textColor="#fff"
+                    android:backgroundTint="#fff"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:id="@+id/tv_check_email"
+                    android:visibility="invisible"
+                    android:textColor="#fff"
+                    android:text="Trùng hoặc xảy ra lỗi với Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/et_passDK"
+                    android:textColor="#fff"
+                    android:backgroundTint="#fff"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:id="@+id/tv_checkPass"
+                    android:visibility="invisible"
+                    android:textColor="#fff"
+                    android:text="Mật khẩu phải nhiều hơn 6 ký tự"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/et_confirmPassDK"
+                    android:textColor="#fff"
+                    android:backgroundTint="#fff"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:id="@+id/tv_checkConPass"
+                    android:visibility="invisible"
+                    android:textColor="#fff"
+                    android:text="Mật khẩu không trùng khớp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_register"
+            android:textSize="17dp"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:text="Đăng ký"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login"
+            android:layout_width="300dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/ll_input"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="bottom"
+            android:textColor="#fff"
+            android:text="Đã có tài khoản? - "
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textStyle="bold"
+            android:layout_gravity="bottom"
+            android:textColor="#2d6fd1"
+            android:text="Đăng nhập"
+            android:textSize="17dp"
+            android:id="@+id/tv_login4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>
+
+

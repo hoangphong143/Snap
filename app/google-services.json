@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "637485561016",
+    "firebase_url": "https://snaphotel-6d93f.firebaseio.com",
+    "project_id": "snaphotel-6d93f",
+    "storage_bucket": "snaphotel-6d93f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637485561016:android:8e8c987451e54ffe",
+        "android_client_info": {
+          "package_name": "com.example.admins.snaphotel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637485561016-140cv2at4ntl2b37f9lce84jegt6spuq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.admins.snaphotel",
+            "certificate_hash": "438d6313eb49d6dc9e70cfbb4c0f529a5e6531c6"
+          }
+        },
+        {
+          "client_id": "637485561016-ibja7uq0mcibjl3ecua7a1pthsvf2l5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqVHpScrlpxfbLKXMD1x1L3aQwJXlMrZY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637485561016-ibja7uq0mcibjl3ecua7a1pthsvf2l5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

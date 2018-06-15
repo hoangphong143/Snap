@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_map_black_24dp"
+            android:title="Bản đồ" />
+
+
+        <item
+            android:id="@+id/nav_myhotel"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
+            android:title="Đăng bài" />
+
+
+
+
+    </group>
+    <group>
+        <item android:title="Tài khoản">
+            <menu>
+
+                <item
+                    android:id="@+id/nav_myPost"
+                    android:title="Bài đăng của tôi"/>
+                <item
+                    android:id="@+id/nav_chat"
+                    android:title="Tin nhắn"/>
+                <item
+                    android:id="@+id/nav_favourite"
+                    android:title="Nhà nghỉ yêu thích"/>
+
+                <item
+                    android:id="@+id/nav_Logout"
+                    android:title="Đăng xuất"/>
+            </menu>
+        </item>
+    </group>
+
+
+</menu>

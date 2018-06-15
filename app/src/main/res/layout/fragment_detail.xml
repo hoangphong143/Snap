@@ -1,0 +1,292 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:id="@+id/ll_gia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_gia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="100000đ-250000đ"
+            android:inputType="numberDecimal"
+            android:textColor="@color/yellow"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="8dp"
+        android:id="@+id/iv_gach"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/ll_gia"
+        android:background="#6e6868" />
+
+    <LinearLayout
+        android:id="@+id/ll_tien_ich"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_gach"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <RelativeLayout
+                android:id="@+id/rl_thang_may"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_thang_may"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/elevator" />
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/tv_thang_may"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_thang_may"
+                    android:text="Thang máy"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_nong_lanh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_nong_lanh"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/heater" />
+
+                <TextView
+                    android:id="@+id/tv_nong_lanh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_nong_lanh"
+                    android:text="Nóng lạnh"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_wifi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_wifi"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/wifi" />
+
+                <TextView
+                    android:id="@+id/tv_wifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_wifi"
+                    android:text="Wifi"
+                    android:textColor="#000" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:weightSum="3">
+
+            <RelativeLayout
+                android:id="@+id/rl_dieu_hoa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_dieu_hoa"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/air_conditioner" />
+
+                <TextView
+                    android:id="@+id/tv_dieu_hoa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_dieu_hoa"
+                    android:gravity="center"
+                    android:text="Điều hòa"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:paddingLeft="16dp"
+                android:id="@+id/rl_tivi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_tivi"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/tivi" />
+
+                <TextView
+                    android:id="@+id/tv_tivi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_tivi"
+                    android:gravity="center"
+                    android:text="Tivi"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:paddingLeft="16dp"
+                android:id="@+id/rl_tu_lanh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_tu_lanh"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/tulanh" />
+
+                <TextView
+                    android:id="@+id/tv_tu_lanh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_tu_lanh"
+                    android:gravity="center"
+                    android:text="Tủ lạnh"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="8dp"
+        android:id="@+id/iv_gach_2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/ll_tien_ich"
+        android:background="#6e6868" />
+
+    <LinearLayout
+        android:id="@+id/ll_lien_he"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iv_gach_2"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_address"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/address" />
+
+            <TextView
+                android:textColor="#000"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_address" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_phone"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/call" />
+
+            <TextView
+                android:textColor="#036ae9"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_phone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_star"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/star" />
+
+            <TextView
+                android:textColor="#000"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_star" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

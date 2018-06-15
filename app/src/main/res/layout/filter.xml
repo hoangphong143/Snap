@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Lọc nhà nghỉ theo"
+        android:textColor="@color/orange"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Giá cả đêm"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+        <RadioButton
+            android:id="@+id/rd_cademnho100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:shadowColor="@color/orange"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:text="&lt; 100.000đ"/>
+
+        <RadioButton
+            android:id="@+id/rd_cademnho200"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:shadowColor="@color/orange"
+            android:text="100.000đ - 200.000đ"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rd_cademlon200"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:shadowColor="@color/orange"
+            android:text="&gt; 200.000đ"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Giá theo giờ"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <RadioButton
+            android:id="@+id/rd_theogionho70"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:shadowColor="@color/orange"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:text="&lt; 70.000đ"/>
+
+        <RadioButton
+            android:id="@+id/rd_theogionho100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:shadowColor="@color/orange"
+            android:text="70.000đ - 100.000đ"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rd_theogiolon100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:shadowColor="@color/orange"
+            android:text="&gt; 100.000đ"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Khoảng cách"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <RadioButton
+            android:id="@+id/rd_kc2km"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:shadowColor="@color/orange"
+            android:text="&lt; 2km"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rd_kc27km"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:shadowColor="@color/orange"
+            android:text="2km - 7km"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rd_kclon7km"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:shadowColor="@color/orange"
+            android:text="&gt; 7km"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Tiện ích"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:id="@+id/ln_dieuhoafillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_dieuhoafillter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/air_conditioner" />
+
+            <TextView
+                android:id="@+id/tv_dieuhoafillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Điều hòa"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_wififillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_wififillter"
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/wifi" />
+
+            <TextView
+                android:id="@+id/tv_wififillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wifi"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_nonglanhfillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_nonglanhfillter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/heater" />
+
+            <TextView
+                android:id="@+id/tv_nonglanhfillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nóng lạnh"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:id="@+id/ln_tivifillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_tivifillter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/tivi" />
+
+            <TextView
+                android:id="@+id/tv_tivifillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tivi"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_tulanhfillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_tulanhfillter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/tulanh" />
+
+            <TextView
+                android:id="@+id/tv_tulanhfillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tủ lạnh"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_thangmayfillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_thangmayfillter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/elevator" />
+
+            <TextView
+                android:id="@+id/tv_thangmayfillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thang máy"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/ln_huyfillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_huyfillter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Hủy"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_okfillter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Lọc"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

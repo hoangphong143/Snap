@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none"
+    android:padding="18dp">
+
+    <LinearLayout
+        android:id="@+id/verify_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="XÁC THỰC"
+
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/tv_verify_phoneNumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="Số điện thoại"
+            android:padding="10dp"
+            android:singleLine="true"
+
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            />
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="Mã xác nhận"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:singleLine="true"
+
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="8dp">
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_verify_verifyPhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+
+            android:padding="3dp"
+            android:text="Xác nhận"
+            android:textColor="#009688"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verify_layout"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Chưa nhận được mã xác nhận?-Gửi lại"
+
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_resend_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_register"
+            android:gravity="center"
+            android:padding="5dp"
+
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+

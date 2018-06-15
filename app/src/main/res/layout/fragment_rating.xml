@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admins.snaphotel.Activities.AddHotelActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_above="@id/tv_rate"
+        android:id="@+id/rv_feedback"
+        android:layout_marginLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:background="@color/yellow"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_rate"
+        android:text="Đánh giá của bạn"/>
+</RelativeLayout>

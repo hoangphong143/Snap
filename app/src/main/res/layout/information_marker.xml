@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="ABCDE"
+        android:textColor="#000" />
+
+    <RatingBar
+        android:id="@+id/rb_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_price"
+        android:numStars="5"
+        android:rating="4"
+        android:theme="@style/RatingBar" />
+
+    <ImageView
+        android:id="@+id/iv_wifi"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/rb_rating"
+        android:src="@drawable/wifi"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_air_condition"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/rb_rating"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@id/iv_wifi"
+        android:src="@drawable/air_conditioner"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_heater"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/rb_rating"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@id/iv_air_condition"
+        android:src="@drawable/heater"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_elevator"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/rb_rating"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@id/iv_heater"
+        android:src="@drawable/elevator"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_tivi"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/rb_rating"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@id/iv_elevator"
+        android:src="@drawable/tivi"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:visibility="invisible"
+        android:src="@drawable/tulanh"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@id/iv_tivi"
+        android:id="@+id/iv_tu_lanh"
+        android:layout_below="@id/rb_rating"
+        android:layout_width="15dp"
+        android:layout_height="15dp" />
+</RelativeLayout>
