@@ -1,6 +1,5 @@
-package com.example.admins.snaphotel.Activities.Adapters;
+package com.example.admins.snaphotel.Adapters;
 
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,18 @@ import com.example.nguyenducanhit.hotelhunter2.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 /**
  * Created by Admins on 6/14/2018.
  */
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder>{
-    ArrayList<ChatModel> modelArrayList = new ArrayList<>();
+    List<ChatModel> modelArrayList;
 
-    public ChatAdapter(ArrayList<ChatModel> modelArrayList) {
+    public ChatAdapter(List<ChatModel> modelArrayList) {
         this.modelArrayList = modelArrayList;
     }
 
@@ -55,7 +57,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         }
 
         public void setData(ChatModel chatModel) {
-            Picasso.with(itemView.getContext()).load(chatModel.photoUri).into(ivPhoto);
+            Picasso.with(itemView.getContext()).load(chatModel.photoUri)
+                    .transform(new CropCircleTransformation()).into(ivPhoto);
             tvName.setText(chatModel.name);
             tvDate.setText(chatModel.date);
         }

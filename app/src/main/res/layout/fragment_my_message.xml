@@ -2,8 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#fff"
+    android:padding="8dp"
     tools:context="com.example.admins.snaphotel.fragment.MyMessageFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,6 +14,15 @@
         android:layout_height="wrap_content"
         android:text="Danh sách tin nhắn"
         android:layout_gravity="center"/>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/iv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallPulseIndicator" />
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

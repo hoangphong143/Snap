@@ -16,9 +16,9 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.admins.snaphotel.Activities.Adapters.FeedbackAdapter;
+import com.example.admins.snaphotel.Adapters.FeedbackAdapter;
 import com.example.admins.snaphotel.Activities.LoginActivity;
-import com.example.admins.snaphotel.Activities.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Event.OnClickWindowinfo;
 import com.example.admins.snaphotel.Model.HotelModel;
 
 import com.example.admins.snaphotel.Model.ReviewModel;

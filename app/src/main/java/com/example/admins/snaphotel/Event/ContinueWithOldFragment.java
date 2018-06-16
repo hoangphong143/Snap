@@ -1,4 +1,4 @@
-package com.example.admins.snaphotel.Activities.Event;
+package com.example.admins.snaphotel.Event;
 
 import android.support.v4.app.Fragment;
 

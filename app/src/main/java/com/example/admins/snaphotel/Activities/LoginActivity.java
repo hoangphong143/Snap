@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.admins.snaphotel.Activities.Event.ContinueWithOldFragment;
-import com.example.admins.snaphotel.Activities.Event.SendInfoFragmentToLogin;
+import com.example.admins.snaphotel.Event.ContinueWithOldFragment;
+import com.example.admins.snaphotel.Event.SendInfoFragmentToLogin;
 import com.example.admins.snaphotel.Model.UserModel;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.facebook.AccessToken;

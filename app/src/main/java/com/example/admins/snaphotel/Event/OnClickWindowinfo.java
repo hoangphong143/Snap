@@ -1,4 +1,4 @@
-package com.example.admins.snaphotel.Activities.Event;
+package com.example.admins.snaphotel.Event;
 
 import com.example.admins.snaphotel.Model.HotelModel;
 

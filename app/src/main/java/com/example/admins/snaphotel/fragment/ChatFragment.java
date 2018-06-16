@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.admins.snaphotel.Activities.Adapters.MessageAdapter;
-import com.example.admins.snaphotel.Activities.Event.SendHotelModel;
+import com.example.admins.snaphotel.Adapters.MessageAdapter;
+import com.example.admins.snaphotel.Event.SendHotelModel;
 import com.example.admins.snaphotel.Model.HotelModel;
 import com.example.admins.snaphotel.Model.MessageModel;
 import com.example.admins.snaphotel.Model.UserModel;

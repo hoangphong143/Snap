@@ -25,10 +25,10 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.admins.snaphotel.Activities.Adapters.CustomInfoWindowAdapter;
-import com.example.admins.snaphotel.Activities.Event.ContinueWithOldFragment;
-import com.example.admins.snaphotel.Activities.Event.OnClickWindowinfo;
-import com.example.admins.snaphotel.Activities.Event.SendInfoFragmentToLogin;
+import com.example.admins.snaphotel.Adapters.CustomInfoWindowAdapter;
+import com.example.admins.snaphotel.Event.ContinueWithOldFragment;
+import com.example.admins.snaphotel.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Event.SendInfoFragmentToLogin;
 import com.example.admins.snaphotel.Model.HotelModel;
 
 import com.example.admins.snaphotel.Ultis.DataHandle;

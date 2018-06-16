@@ -1,4 +1,4 @@
-package com.example.admins.snaphotel.Activities.Adapters;
+package com.example.admins.snaphotel.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

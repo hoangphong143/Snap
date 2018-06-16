@@ -5,28 +5,28 @@
     tools:context="com.example.admins.snaphotel.Activities.AddHotelActivity">
 
     <TextView
+        android:id="@+id/tv_no_rev"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Chưa có đánh giá"
-        android:id="@+id/tv_no_rev"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_above="@id/tv_rate"
         android:id="@+id/rv_feedback"
-        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_rate"
+        android:layout_marginLeft="8dp" />
+
     <TextView
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:textColor="#fff"
-        android:background="@color/yellow"
-        android:padding="16dp"
+        android:id="@+id/tv_rate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_rate"
-        android:text="Đánh giá của bạn"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/yellow"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Đánh giá của bạn"
+        android:textColor="#fff" />
 </RelativeLayout>

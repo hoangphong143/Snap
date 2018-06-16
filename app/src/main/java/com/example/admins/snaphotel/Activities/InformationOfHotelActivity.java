@@ -1,21 +1,17 @@
 package com.example.admins.snaphotel.Activities;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,12 +19,9 @@ import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.example.admins.snaphotel.Activities.Adapters.ViewPagerAdapter;
-import com.example.admins.snaphotel.Activities.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Adapters.ViewPagerAdapter;
+import com.example.admins.snaphotel.Event.OnClickWindowinfo;
 import com.example.admins.snaphotel.Model.HotelModel;
-import com.example.admins.snaphotel.Ultis.ImageUtils;
-import com.example.admins.snaphotel.fragment.ChatFragment;
-import com.example.admins.snaphotel.fragment.MyMessageFragment;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
 

@@ -25,6 +25,7 @@ public class HotelModel {
     public boolean tivi;
     public boolean tulanh;
     public String key;
+//    public List<MessageModel> listMessage;
 
     public HotelModel() {
     }

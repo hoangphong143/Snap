@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admins.snaphotel.Activities.Adapters.HotelAdapter;
+import com.example.admins.snaphotel.Adapters.HotelAdapter;
 import com.example.admins.snaphotel.Activities.MainActivity;
 import com.example.admins.snaphotel.Model.HotelModel;
 
@@ -107,6 +107,7 @@ public class MyHotelFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 HotelModel hotelModel = dataSnapshot.getValue(HotelModel.class);
+                hotelModelList.clear();
                 hotelModelList.add(hotelModel);
 
                 if (index == huidList.size() - 1) {

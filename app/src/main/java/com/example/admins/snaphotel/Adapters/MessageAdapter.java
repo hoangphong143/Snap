@@ -1,4 +1,4 @@
-package com.example.admins.snaphotel.Activities.Adapters;
+package com.example.admins.snaphotel.Adapters;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admins.snaphotel.Model.ChatModel;
 import com.example.admins.snaphotel.Model.MessageModel;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 
-import com.example.admins.snaphotel.Activities.Adapters.CustomInfoWindowAdapter;
+import com.example.admins.snaphotel.Adapters.CustomInfoWindowAdapter;
 import com.example.admins.snaphotel.Activities.TurnOnGPSActivity;
 import com.example.admins.snaphotel.Model.HotelModel;
 import com.example.admins.snaphotel.Maps.distance_matrix.DistanceInterface;

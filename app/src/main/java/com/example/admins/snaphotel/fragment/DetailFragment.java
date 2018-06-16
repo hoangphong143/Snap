@@ -13,7 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,13 +24,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.admins.snaphotel.Activities.Adapters.FeedbackAdapter;
-import com.example.admins.snaphotel.Activities.Event.OnClickWindowinfo;
-import com.example.admins.snaphotel.Activities.Event.SendHotelModel;
+import com.example.admins.snaphotel.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Event.SendHotelModel;
 import com.example.admins.snaphotel.Activities.LoginActivity;
 import com.example.admins.snaphotel.Model.HotelModel;
 
-import com.example.admins.snaphotel.Model.ReviewModel;
 import com.example.admins.snaphotel.Ultis.ImageUtils;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +44,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 /**
