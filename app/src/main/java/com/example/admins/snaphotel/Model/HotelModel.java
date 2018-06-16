@@ -11,6 +11,7 @@ public class HotelModel {
     public String nameHotel;
     public String address;
     public String phone;
+    public String phone1;
     public double kinhDo;
     public double viDo;
     public float danhGiaTB;

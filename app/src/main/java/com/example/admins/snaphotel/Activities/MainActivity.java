@@ -26,7 +26,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.admins.snaphotel.Activities.Adapters.CustomInfoWindowAdapter;
+import com.example.admins.snaphotel.Activities.Event.ContinueWithOldFragment;
 import com.example.admins.snaphotel.Activities.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Activities.Event.SendInfoFragmentToLogin;
 import com.example.admins.snaphotel.Model.HotelModel;
 
 import com.example.admins.snaphotel.Ultis.DataHandle;
@@ -48,6 +50,7 @@ import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +111,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -170,7 +177,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-            onBackPressed();
+            if (getSupportFragmentManager().getBackStackEntryCount()!=0) {
+                super.onBackPressed();
+            }
 
         } else if (id == R.id.nav_Logout) {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -214,7 +223,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Intent i2 = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(i2);
-
+                        alertDialog.dismiss();
                     }
                 });
                 Button btNo = dialogView.findViewById(R.id.btn_no);
@@ -227,7 +236,7 @@ public class MainActivity extends AppCompatActivity
 
 
             } else {
-                Intent i3 = new Intent(this, AddHotelActivity.class);
+                Intent i3 = new Intent(this, CodeActivity.class);
                 startActivity(i3);
             }
 
@@ -245,7 +254,8 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Intent i2 = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(i2);
-
+                        alertDialog.dismiss();
+                        EventBus.getDefault().postSticky(new SendInfoFragmentToLogin(new MyHotelFragment()));
                     }
                 });
                 Button btNo = dialogView.findViewById(R.id.btn_no);
@@ -272,7 +282,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Intent i2 = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(i2);
-
+                        alertDialog.dismiss();
                     }
                 });
                 Button btNo = dialogView.findViewById(R.id.btn_no);
@@ -282,6 +292,7 @@ public class MainActivity extends AppCompatActivity
                         alertDialog.dismiss();
                     }
                 });
+                EventBus.getDefault().postSticky(new SendInfoFragmentToLogin(new MyMessageFragment()));
             } else {
                 ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new MyMessageFragment());
             }
@@ -345,6 +356,7 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause: ");
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -685,5 +697,9 @@ public class MainActivity extends AppCompatActivity
         return false;
     }
 
+    @Subscribe(sticky = true)
+    public void openFragmentAfterLogin(ContinueWithOldFragment continueWithOldFragment) {
+        ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, continueWithOldFragment.fragment);
+    }
 
 }

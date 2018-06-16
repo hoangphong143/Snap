@@ -51,6 +51,7 @@ public class RatingFragment extends Fragment implements View.OnClickListener {
     DatabaseReference databaseReference;
     FeedbackAdapter feedbackAdapter;
     RecyclerView rvFeedback;
+    TextView tvNoRev;
     public HotelModel hotelModel;
 
     public RatingFragment() {
@@ -64,32 +65,35 @@ public class RatingFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rating, container, false);
+
+        setupUI(view);
         EventBus.getDefault().register(this);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        setupUI(view);
-        loadData();
 
         return view;
 //
     }
 
-    private void loadData() {
-    }
-
     private void setupUI(View view) {
         TextView tvrate = view.findViewById(R.id.tv_rate);
         rvFeedback = view.findViewById(R.id.rv_feedback);
+        tvNoRev = view.findViewById(R.id.tv_no_rev);
         tvrate.setOnClickListener(this);
+    }
+
+    @Subscribe(sticky = true)
+    public void getHotelModel(final OnClickWindowinfo onClickWindowinfo) {
+        hotelModel = onClickWindowinfo.hotelModel;
+        if (hotelModel.reviewModels == null) {
+            hotelModel.reviewModels = new ArrayList<>();
+            tvNoRev.setVisibility(View.VISIBLE);
+        }
+        Log.d(TAG, "getHotelModel: " + hotelModel.reviewModels);
         feedbackAdapter = new FeedbackAdapter(getContext(), hotelModel.reviewModels);
 
         rvFeedback.setAdapter(feedbackAdapter);
         rvFeedback.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-    @Subscribe(sticky = true)
-    public void getHotelModel(final OnClickWindowinfo onClickWindowinfo) {
-        hotelModel = onClickWindowinfo.hotelModel;
-        if (hotelModel.reviewModels == null) hotelModel.reviewModels = new ArrayList<>();
     }
 
     @Override
@@ -165,9 +169,9 @@ public class RatingFragment extends Fragment implements View.OnClickListener {
                             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                             Date date = Calendar.getInstance().getTime();
                             ReviewModel review = new ReviewModel(
-                                    new UserModel(firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getUid(),""),
+                                    new UserModel(firebaseAuth.getCurrentUser().getDisplayName(), firebaseAuth.getCurrentUser().getUid(), ""),
                                     dateFormat.format(date),
-                                    etComment.getText().toString(),  rbRate.getRating());
+                                    etComment.getText().toString(), rbRate.getRating());
                             if (hotelModel.reviewModels == null) {
                                 List<ReviewModel> reviewModels = new ArrayList<>();
                                 reviewModels.add(review);
@@ -175,8 +179,11 @@ public class RatingFragment extends Fragment implements View.OnClickListener {
                             } else {
                                 hotelModel.reviewModels.add(review);
                             }
+                            Log.d(TAG, "onClick: " + hotelModel.reviewModels);
                             rvFeedback.setAdapter(new FeedbackAdapter(getContext(), hotelModel.reviewModels));
+                            rvFeedback.setLayoutManager(new LinearLayoutManager(getContext()));
                             databaseReference.child(hotelModel.key).setValue(hotelModel);
+                            tvNoRev.setVisibility(View.GONE);
                             alertDialog.dismiss();
 
                         }

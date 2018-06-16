@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.admins.snaphotel.Activities.Event.ContinueWithOldFragment;
+import com.example.admins.snaphotel.Activities.Event.SendInfoFragmentToLogin;
 import com.example.admins.snaphotel.Model.UserModel;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.facebook.AccessToken;
@@ -46,6 +48,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 /**
  * Created by Admins on 3/1/2018.
  */
@@ -75,6 +80,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -182,6 +190,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: ");
         if (requestCode == REQ_CODEGOOGLE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleResult(result);
@@ -250,6 +259,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void handleResult(GoogleSignInResult result) {
+        Log.d(TAG, "handleResult: ");
         if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
@@ -293,6 +303,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             }
                         }
                     });
+        } else {
+            Log.d(TAG, "handleResult: ");
         }
 
 
@@ -321,5 +333,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 disableEnableControls(enable, (ViewGroup)child);
             }
         }
+    }
+
+    @Subscribe (sticky = true)
+    public void sendInfoFragToMainToOpen(SendInfoFragmentToLogin sendInfoFragmentToLogin) {
+        EventBus.getDefault().postSticky(new ContinueWithOldFragment(sendInfoFragmentToLogin.fragment));
     }
 }

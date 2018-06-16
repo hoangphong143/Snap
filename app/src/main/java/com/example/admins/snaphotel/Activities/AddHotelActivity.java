@@ -61,7 +61,7 @@ public class AddHotelActivity extends AppCompatActivity implements View.OnClickL
     EditText etSDT1;
     EditText etGiaDem, etGiaGio;
     ImageView iv_wifi, iv_thangmay, iv_dieuhoa, iv_nonglanh, iv_tivi, iv_tulanh, iv_addphoto;
-    TextView tv_wifi, tv_thangmay, tv_dieuhoa, tv_nonglanh, tv_tivi, tv_tulanh, tv_vitribando, tv_dt1;
+    TextView tv_wifi, tv_thangmay, tv_dieuhoa, tv_nonglanh, tv_tivi, tv_tulanh, tv_vitribando, tvPhone1;
     LinearLayout ln_wifi, ln_thangmay, ln_dieuhoa, ln_nonglanh, ln_tivi, ln_tulanh, ln_image;
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
@@ -137,10 +137,13 @@ public class AddHotelActivity extends AppCompatActivity implements View.OnClickL
         kinhdo.setVisibility(View.GONE);
         vido.setVisibility(View.GONE);
         rate.setVisibility(View.GONE);
+        tvPhone1 = findViewById(R.id.tv_phone1);
         etGiaDem.addTextChangedListener(onTextChangedListener(etGiaDem));
         etGiaGio.addTextChangedListener(onTextChangedListener(etGiaGio));
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("hotels");
+
+        tvPhone1.setText(CodeActivity.phone);
 
     }
 
@@ -281,9 +284,15 @@ public class AddHotelActivity extends AppCompatActivity implements View.OnClickL
             etGiaDem.setError("Không được để trống");
             dk = false;
         }
+        if (lst_Image.size()==0) {
+            Toast.makeText(this, "Thêm ảnh", Toast.LENGTH_SHORT).show();
+            dk = false;
+        }
         if (!dk) {
             return;
         }
+
+
         hotelModel = new HotelModel();
 //        hotelModel.kinhDo = 105.783303;
 //        hotelModel.viDo = 20.979135;
@@ -305,6 +314,7 @@ public class AddHotelActivity extends AppCompatActivity implements View.OnClickL
 //        hotelModel.danhGiaTB = Float.parseFloat(rate.getText().toString());
         hotelModel.kinhDo = latLng.longitude;
         hotelModel.viDo = latLng.latitude;
+        hotelModel.phone1=tvPhone1.getText().toString();
         hotelModel.key = databaseReference.push().getKey();
         databaseReference.child(hotelModel.key).setValue(hotelModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -518,5 +528,11 @@ public class AddHotelActivity extends AppCompatActivity implements View.OnClickL
             iv_wifi.setAlpha(100);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

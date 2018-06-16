@@ -45,6 +45,7 @@ public class MyHotelFragment extends Fragment {
     RecyclerView rvHotel;
     ImageView ivAvata;
     TextView tvName;
+    TextView tvNoPost;
     AVLoadingIndicatorView avLoadingIndicatorView;
 
     public MyHotelFragment() {
@@ -58,8 +59,9 @@ public class MyHotelFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_hotel, container, false);
         rvHotel = view.findViewById(R.id.rv_myHotel);
-        ivAvata= view.findViewById(R.id.iv_avatar);
-        tvName=view.findViewById(R.id.tv_name);
+        ivAvata = view.findViewById(R.id.iv_avatar);
+        tvName = view.findViewById(R.id.tv_name);
+        tvNoPost = view.findViewById(R.id.tv_noPost);
 
         avLoadingIndicatorView = view.findViewById(R.id.iv_loading);
         avLoadingIndicatorView.show();
@@ -81,12 +83,15 @@ public class MyHotelFragment extends Fragment {
                         huidList.add(huid);
                     }
                     getListHotel(huidList, 0);
+                } else {
+                    tvNoPost.setVisibility(View.VISIBLE);
+                    avLoadingIndicatorView.hide();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.d(TAG, "onCancelled: ");
             }
         });
 
