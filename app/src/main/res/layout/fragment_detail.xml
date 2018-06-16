@@ -218,7 +218,7 @@
     <LinearLayout
         android:id="@+id/ll_lien_he"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/iv_gach_2"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
@@ -261,10 +261,29 @@
                 android:textColor="#036ae9"
                 android:layout_centerVertical="true"
                 android:id="@+id/tv_phone"
-                android:layout_width="match_parent"
+                android:text="0123"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@id/iv_phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toRightOf="@id/tv_phone"
+                android:id="@+id/tv_1"/>
+
+            <TextView
+                android:text="0123"
+                android:textColor="#036ae9"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_phone2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_1" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -289,4 +308,17 @@
                 android:layout_toRightOf="@id/iv_star" />
         </RelativeLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="Nhắn tin"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="16sp"/>
 </RelativeLayout>

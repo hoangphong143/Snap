@@ -14,6 +14,7 @@ import com.example.admins.snaphotel.Model.ChatModel;
 import com.example.admins.snaphotel.Model.MessageModel;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -36,12 +37,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     List<MessageModel> messageModelList;
 
 
-    public MessageAdapter(FirebaseAuth firebaseAuth, Context context, FirebaseDatabase firebaseDatabase, FragmentManager fragmentManager, List<MessageModel> messageModelList) {
+    public MessageAdapter(FirebaseUser firebaseUser, FirebaseAuth firebaseAuth, Context context, FirebaseDatabase firebaseDatabase, FragmentManager fragmentManager, List<MessageModel> messageModelList) {
         this.firebaseAuth = firebaseAuth;
         this.context = context;
         this.firebaseDatabase = firebaseDatabase;
         this.fragmentManager = fragmentManager;
         this.messageModelList = messageModelList;
+        userName = firebaseUser.getDisplayName();
 
     }
 
@@ -70,11 +72,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public int getItemViewType(int position) {
-        if (userName.equals(messageModelList.get(position).userName)){
-             viewType = 1;
+        if (userName.equals(messageModelList.get(position).userName)) {
+            viewType = 1;
             return 1;
-        }else{
-            viewType =2;
+        } else {
+            viewType = 2;
             return 2;
         }
     }
@@ -101,13 +103,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
 
         public void setData(MessageModel messageModel) {
-            if (viewType == 2){
-                Picasso.with(context).load(messageModel.Uri)
+            if (viewType == 2) {
+                Picasso.with(context).load(messageModel.photoUri)
                         .transform(new CropCircleTransformation())
                         .into(ivAvatar);
                 repUserName.setText(messageModel.userName);
                 reply.setText(messageModel.content);
-            }else if (viewType == 1){
+            } else if (viewType == 1) {
                 Log.d("TAG", "setData: " + messageModel.content);
                 mycontent.setText(messageModel.content);
             }

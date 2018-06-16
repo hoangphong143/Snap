@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#fff"
     tools:context="com.example.admins.snaphotel.fragment.ChatFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/rl_text_chat"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="70dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_text_chat"
@@ -29,9 +29,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
-        android:onClick="handleFragmentClick"
-        android:src="@drawable/ic_send"
-        tools:ignore="OnClick" />
+        android:src="@drawable/ic_send_black_24dp" />
 
     <RelativeLayout
         android:id="@+id/rl_text_chat"

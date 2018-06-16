@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-            if (getSupportFragmentManager().getBackStackEntryCount()!=0) {
+            if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
                 super.onBackPressed();
             }
 
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
             } else {
-            ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new MyHotelFragment());
+                ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new MyHotelFragment());
             }
         } else if (id == R.id.nav_chat) {
             if (firebaseAuth.getCurrentUser() == null) {
@@ -308,18 +308,7 @@ public class MainActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: ");
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         mMap.setMyLocationEnabled(true);
@@ -344,7 +333,7 @@ public class MainActivity extends AppCompatActivity
                 EventBus.getDefault().postSticky(new OnClickWindowinfo((HotelModel) marker.getTag()));
 
                 Log.d(TAG, "onInfoWindowClick: " + list.size());
-                Log.d(TAG, "onInfoWindowClick: "+marker.getTag());
+                Log.d(TAG, "onInfoWindowClick: " + marker.getTag());
                 Intent intent = new Intent(MainActivity.this, InformationOfHotelActivity.class);
                 startActivity(intent);
 //                overridePendingTransition(R.anim.right_to_left, R.anim.left_to_right);
@@ -660,10 +649,10 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
     public boolean xetKhoangCach(int position) {
-        if (DataHandle.rows != null&&DataHandle.rows.size()>0) {
-            if(DataHandle.rows.get(0).elements.size()>position)
-            {
+        if (DataHandle.rows != null && DataHandle.rows.size() > 0) {
+            if (DataHandle.rows.get(0).elements.size() > position) {
                 if (DataHandle.rows.get(0).elements.get(position).status.equals("OK")) {
                     if (rd_kc2km.isChecked()) {
                         if (DataHandle.rows.get(0).elements.get(position).distance.value < 2000) {
@@ -687,8 +676,7 @@ public class MainActivity extends AppCompatActivity
                         return true;
                     }
                 }
-            }
-            else {
+            } else {
                 return false;
             }
 

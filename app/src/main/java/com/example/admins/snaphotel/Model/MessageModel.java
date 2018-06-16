@@ -10,21 +10,19 @@ import android.view.View;
 
 
 public class MessageModel  {
-    public String userName;
     public String content;
     public String time;
-    public String uId;
-    public String Uri;
+    public String userName;
+    public String photoUri;
 
     public MessageModel( ) {
 
     }
 
-    public MessageModel(String userName, String content, String time, String uId, String uri) {
-        this.userName = userName;
+    public MessageModel(String content, String time, String userName, String photoUri) {
         this.content = content;
         this.time = time;
-        this.uId = uId;
-        Uri = uri;
+        this.userName = userName;
+        this.photoUri = photoUri;
     }
 }

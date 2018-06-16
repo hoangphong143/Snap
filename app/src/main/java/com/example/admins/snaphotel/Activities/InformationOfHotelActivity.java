@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,7 +48,6 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
     HotelModel hotelModel;
     ViewPager viewPager;
     TextView tvName;
-    ImageView iv_chat;
     SliderLayout sliderLayout;
     PagerIndicator pagerIndicator;
     ImageView iv_back;
@@ -67,8 +69,6 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
         tab = findViewById(R.id.tab);
         viewPager = findViewById(R.id.vp_fragment);
         tvName = findViewById(R.id.tv_name);
-        iv_chat=findViewById(R.id.iv_chat);
-//        ivHotel = findViewById(R.id.iv_hotel);
         tab.addTab(tab.newTab().setText("Details"));
         tab.addTab(tab.newTab().setText("Comment"));
         sliderLayout = findViewById(R.id.slide_hotel);
@@ -88,37 +88,6 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-        iv_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (firebaseAuth.getCurrentUser() == null) {
-                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
-                    LayoutInflater layoutInflater = getLayoutInflater();
-                    View dialogView = layoutInflater.inflate(R.layout.require, null);
-                    dialogBuilder.setView(dialogView);
-                    final AlertDialog alertDialog = dialogBuilder.create();
-                    alertDialog.show();
-                    Button btYes = dialogView.findViewById(R.id.btn_yes);
-                    btYes.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent i2 = new Intent(getApplicationContext(), LoginActivity.class);
-                            startActivity(i2);
-
-                        }
-                    });
-                    Button btNo = dialogView.findViewById(R.id.btn_no);
-                    btNo.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            alertDialog.dismiss();
-                        }
-                    });
-                } else {
-                    ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new MyMessageFragment());
-                }
             }
         });
         iv_back.setOnClickListener(new View.OnClickListener() {
@@ -167,5 +136,19 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
     @Override
     public void onSliderClick(BaseSliderView slider) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.detail_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //todo: favorite
+        return true;
     }
 }

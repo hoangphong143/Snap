@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#fff"
     tools:context="com.example.admins.snaphotel.fragment.MyMessageFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -16,7 +17,5 @@
         android:layout_height="match_parent"
         android:id="@+id/rv_mess"
         android:layout_marginTop="8dp">
-
-
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

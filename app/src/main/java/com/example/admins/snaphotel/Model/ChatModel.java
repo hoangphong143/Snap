@@ -5,5 +5,13 @@ package com.example.admins.snaphotel.Model;
  */
 
 public class ChatModel {
+    public String photoUri;
+    public String name;
+    public String date;
 
+    public ChatModel(String photoUri, String name, String date) {
+        this.photoUri = photoUri;
+        this.name = name;
+        this.date = date;
+    }
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.admins.snaphotel.Activities.MainActivity;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -22,7 +23,7 @@ public class MyMessageFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
 
-
+    RecyclerView rvMess;
 
     public MyMessageFragment() {
         // Required empty public constructor
@@ -34,9 +35,21 @@ public class MyMessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_my_message, container, false);
-        RecyclerView rv_myMess= view.findViewById(R.id.rv_mess);
+        rvMess = view.findViewById(R.id.rv_mess);
+        MainActivity.iv_filter.setVisibility(View.GONE);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        databaseReference = firebaseDatabase.getReference("hotels");
+
         return view;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        MainActivity.iv_filter.setVisibility(View.VISIBLE);
+    }
 }
 

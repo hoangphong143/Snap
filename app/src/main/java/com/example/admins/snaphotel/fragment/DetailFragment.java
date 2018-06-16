@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,13 +27,20 @@ import android.widget.Toast;
 
 import com.example.admins.snaphotel.Activities.Adapters.FeedbackAdapter;
 import com.example.admins.snaphotel.Activities.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Activities.Event.SendHotelModel;
+import com.example.admins.snaphotel.Activities.LoginActivity;
 import com.example.admins.snaphotel.Model.HotelModel;
 
 import com.example.admins.snaphotel.Model.ReviewModel;
+import com.example.admins.snaphotel.Ultis.ImageUtils;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -45,27 +53,17 @@ import java.util.Locale;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailFragment extends Fragment  {
+public class DetailFragment extends Fragment {
     private static final String TAG = DetailFragment.class.toString();
     TextView tvGia;
     RelativeLayout rlWifi, rlNongLanh, rlDieuHoa, rlThangMay, rlTuLanh, rlTivi;
     TextView tvAddress;
-    TextView tvPhone;
+    TextView tvPhone, tvPhone2, tvChat;
     TextView tvRate;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    List<ReviewModel> reviewModelList = new ArrayList<>();
-    FeedbackAdapter feedbackAdapter;
-    RecyclerView rvFeedback;
     ImageView ivStar;
     public HotelModel hotelModel;
-    Intent in;
-
-    public DetailFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,33 +73,13 @@ public class DetailFragment extends Fragment  {
         EventBus.getDefault().register(this);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = firebaseDatabase.getReference("hotels");
-//        databaseReference.child("reviewModels").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
-//                {
-//                    ReviewModel reviewModel = postSnapshot.getValue(ReviewModel.class);
-//                    reviewModelList.add(reviewModel);
-//                    Log.d(TAG, "onDataChange: "+reviewModelList);
-//
-//                    feedbackAdapter = new FeedbackAdapter(getContext(),reviewModelList);
-//                    rvFeedback.setAdapter(feedbackAdapter);
-//                    rvFeedback.setLayoutManager(new LinearLayoutManager(getContext()));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
         setupUI(view);
-        in = new Intent(Intent.ACTION_CALL, Uri.parse("tel: "+tvPhone.getText().toString().trim()));
+
         addListtenners();
         loadData();
         return view;
     }
+
     private void loadData() {
         AlphaAnimation alpha = new AlphaAnimation(0.1F, 0.1F);
         alpha.setDuration(0);
@@ -133,16 +111,17 @@ public class DetailFragment extends Fragment  {
         tvAddress.setText(hotelModel.address);
 
         tvPhone.setText(hotelModel.phone);
+        tvPhone2.setText(hotelModel.phone1);
         String giaDon = hotelModel.gia.substring(0, hotelModel.gia.indexOf("-"));
-        String giaDoi = hotelModel.gia.substring(hotelModel.gia.indexOf("-")+1);
+        String giaDoi = hotelModel.gia.substring(hotelModel.gia.indexOf("-") + 1);
         Log.d(TAG, "loadData: " + giaDon + "   " + giaDoi);
 
-        tvGia.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon))+" VNĐ" +" -  " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi))+ " VNĐ");
+        tvGia.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon)) + " VNĐ" + " -  " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi)) + " VNĐ");
 
         // tvGia.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon))+" - " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi))+ " VNĐ");
 
 
-        tvRate.setText(hotelModel.danhGiaTB*2 + "/10");
+        tvRate.setText(hotelModel.danhGiaTB * 2 + "/10");
     }
 
     private void setupUI(View view) {
@@ -154,10 +133,37 @@ public class DetailFragment extends Fragment  {
         tvPhone = view.findViewById(R.id.tv_phone);
         tvGia = view.findViewById(R.id.tv_gia);
         tvRate = view.findViewById(R.id.tv_rating);
-        tvRate= view.findViewById(R.id.tv_rating);
-        ivStar= view.findViewById(R.id.iv_star);
+        tvRate = view.findViewById(R.id.tv_rating);
+        ivStar = view.findViewById(R.id.iv_star);
         rlTivi = view.findViewById(R.id.rl_tivi);
         rlTuLanh = view.findViewById(R.id.rl_tu_lanh);
+        tvPhone2 = view.findViewById(R.id.tv_phone2);
+        tvChat = view.findViewById(R.id.tv_chat);
+
+        checkHotel();
+    }
+
+    private void checkHotel() {
+        final DatabaseReference databaseReference = firebaseDatabase.getReference("users");
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser!=null) {
+            databaseReference.child(firebaseUser.getUid()).child("Huid").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String huid = snapshot.getValue(String.class);
+                        if (huid.equals(hotelModel.key)) {
+                            tvChat.setVisibility(View.GONE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     @Subscribe(sticky = true)
@@ -165,30 +171,28 @@ public class DetailFragment extends Fragment  {
         hotelModel = onClickWindowinfo.hotelModel;
         if (hotelModel.reviewModels == null) hotelModel.reviewModels = new ArrayList<>();
     }
-    public void addListtenners()
-    {
+
+    public void addListtenners() {
         tvPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder altdial = new AlertDialog.Builder(getContext(),R.style.MyDialogTheme);
-                altdial.setMessage("Bạn muốn thực hiện cuộc gọi").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder altdial = new AlertDialog.Builder(getContext(), R.style.MyDialogTheme);
+                altdial.setMessage("Bạn muốn thực hiện cuộc gọi").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                         try {
                             if (Build.VERSION.SDK_INT >= 23) {
                                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 0);
-                                    Log.e(TAG, "onClick: "+"permission" );
-                                }
-                                else {
-                                    startActivity(in);
+                                    Log.e(TAG, "onClick: " + "permission");
+                                } else {
+                                    startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + tvPhone.getText().toString().trim())));
                                 }
 
-                            }
-                            else {
+                            } else {
 
-                                startActivity(in);
+                                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + tvPhone.getText().toString().trim())));
                             }
                         } catch (ActivityNotFoundException ex) {
                             Toast.makeText(getContext(), "Không thể thực hiện cuộc gọi", Toast.LENGTH_SHORT).show();
@@ -203,17 +207,84 @@ public class DetailFragment extends Fragment  {
 
             }
         });
+
+        tvPhone2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder altdial = new AlertDialog.Builder(getContext(), R.style.MyDialogTheme);
+                altdial.setMessage("Bạn muốn thực hiện cuộc gọi").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        try {
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 0);
+                                    Log.e(TAG, "onClick: " + "permission");
+                                } else {
+                                    startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + tvPhone2.getText().toString().trim())));
+                                }
+
+                            } else {
+
+                                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + tvPhone2.getText().toString().trim())));
+                            }
+                        } catch (ActivityNotFoundException ex) {
+                            Toast.makeText(getContext(), "Không thể thực hiện cuộc gọi", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }).show();
+
+            }
+        });
+
+        tvChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View dialogView = layoutInflater.inflate(R.layout.require, null);
+                    dialogBuilder.setView(dialogView);
+                    final AlertDialog alertDialog = dialogBuilder.create();
+                    alertDialog.show();
+                    Button btYes = dialogView.findViewById(R.id.btn_yes);
+                    btYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i2 = new Intent(getContext(), LoginActivity.class);
+                            startActivity(i2);
+                            alertDialog.dismiss();
+                        }
+                    });
+                    Button btNo = dialogView.findViewById(R.id.btn_no);
+                    btNo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
+                } else {
+                    ImageUtils.openFragment(getActivity().getSupportFragmentManager(), R.id.rl_detail, new ChatFragment());
+                    EventBus.getDefault().postSticky(new SendHotelModel(hotelModel));
+                }
+            }
+        });
+
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==0)
-        {
-            Log.e(TAG, "onRequestPermissionsResult: " );
-            if (grantResults.length!=0&&grantResults[0]==PackageManager.PERMISSION_GRANTED)
-            {
-                startActivity(in);
+        if (requestCode == 0) {
+            Log.e(TAG, "onRequestPermissionsResult: ");
+            if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + tvPhone.getText().toString().trim())));
             }
         }
     }
