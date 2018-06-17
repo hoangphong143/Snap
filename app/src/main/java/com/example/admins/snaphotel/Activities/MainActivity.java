@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -85,13 +86,16 @@ public class MainActivity extends AppCompatActivity
     public static ImageView iv_filter;
     public static Context Main;
 
+    Button btClearFilter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iv_filter = findViewById(R.id.iv_filter);
+        btClearFilter = findViewById(R.id.bt_clear_filter);
         iv_filter.setOnClickListener(this);
+        btClearFilter.setOnClickListener(this);
         Main = MainActivity.this;
 
     }
@@ -176,9 +180,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            //todo check map
             if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
-                super.onBackPressed();
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
 
         } else if (id == R.id.nav_Logout) {
@@ -404,6 +408,21 @@ public class MainActivity extends AppCompatActivity
                 alertDialog.dismiss();
                 break;
             }
+            case R.id.bt_clear_filter: {
+                for (int i = 0; i < list.size(); i++) {
+                    HotelModel hotelModel = list.get(i);
+                    CustomInfoWindowAdapter adapter = new CustomInfoWindowAdapter(this);
+                    mMap.setInfoWindowAdapter(adapter);
+                    LatLng sydney = new LatLng(hotelModel.viDo, hotelModel.kinhDo);
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(sydney).title(hotelModel.nameHotel).snippet(String.valueOf(hotelModel.danhGiaTB) + "/" + hotelModel.gia);
+                    Marker marker = mMap.addMarker(markerOptions);
+                    marker.setTag(hotelModel);
+                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_hotel));
+                }
+                btClearFilter.setVisibility(View.GONE);
+                break;
+            }
 
         }
 
@@ -564,7 +583,8 @@ public class MainActivity extends AppCompatActivity
             marker.setTag(hotelModel);
             marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_hotel));
         }
-
+        btClearFilter.setVisibility(View.VISIBLE);
+        Log.d(TAG, "Fillter: ");
     }
 
     public boolean xetDKGiaDem(HotelModel hotelModel) {

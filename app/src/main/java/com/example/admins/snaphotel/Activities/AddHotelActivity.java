@@ -532,7 +532,6 @@ public class AddHotelActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-        this.finishAffinity();
         startActivity(new Intent(this, MainActivity.class));
     }
 }

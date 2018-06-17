@@ -53,6 +53,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         tvPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon))+" - " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi))+ " VNĐ");
 
         ratingBar.setRating(hotelModel.danhGiaTB);
+
         if (hotelModel.dieuHoa){
             ivDieuHoa.setVisibility(View.VISIBLE);
         }

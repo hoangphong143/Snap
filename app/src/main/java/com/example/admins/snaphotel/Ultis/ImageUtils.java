@@ -133,7 +133,7 @@ public class ImageUtils {
     }
     public static void openFragment(FragmentManager fragmentManager, int layoutID, Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(layoutID, fragment);
+        fragmentTransaction.add(layoutID, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

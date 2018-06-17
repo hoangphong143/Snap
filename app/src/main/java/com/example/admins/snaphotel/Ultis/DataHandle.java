@@ -41,6 +41,7 @@ public class DataHandle {
     private static final String TAG = "DataHandle";
     public static final List<Polyline> polylines = new ArrayList<>();
     public static List<DistanceResponse.Rows> rows;
+
     public static List<HotelModel> hotelModels(final GoogleMap mMap, final Context context) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("hotels");
@@ -56,9 +57,9 @@ public class DataHandle {
                     list.add(hotelModel);
                     CustomInfoWindowAdapter adapter = new CustomInfoWindowAdapter(context);
                     mMap.setInfoWindowAdapter(adapter);
-                    LatLng sydney = new LatLng(hotelModel.viDo,hotelModel.kinhDo);
+                    LatLng sydney = new LatLng(hotelModel.viDo, hotelModel.kinhDo);
                     MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(sydney).title(hotelModel.nameHotel).snippet(String.valueOf(hotelModel.danhGiaTB)+"/"+hotelModel.gia);
+                    markerOptions.position(sydney).title(hotelModel.nameHotel).snippet(String.valueOf(hotelModel.danhGiaTB) + "/" + hotelModel.gia);
                     Marker marker = mMap.addMarker(markerOptions);
                     marker.setTag(hotelModel);
                     marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_hotel));
@@ -68,7 +69,7 @@ public class DataHandle {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
                         final PolylineOptions polylineOptions = new PolylineOptions().color(Color.RED).width(16);
-                        for (int i = 0; i < polylines.size(); i++){
+                        for (int i = 0; i < polylines.size(); i++) {
                             polylines.get(i).remove();
                         }
 //                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 20);
@@ -76,9 +77,9 @@ public class DataHandle {
                         RetrofitService retrofitService = RetrofitInstance.getInstance().create(RetrofitService.class);
                         Log.d(TAG, "onMarkerClick: " + TurnOnGPSActivity.currentLocation);
                         retrofitService.getDirection(String.valueOf(TurnOnGPSActivity.currentLocation.latitude)
-                                        +","+String.valueOf(TurnOnGPSActivity.currentLocation.longitude),
+                                        + "," + String.valueOf(TurnOnGPSActivity.currentLocation.longitude),
                                 String.valueOf(marker.getPosition().latitude)
-                                        +","+String.valueOf(marker.getPosition().longitude),
+                                        + "," + String.valueOf(marker.getPosition().longitude),
                                 "AIzaSyCPHUVwzFXx1bfLxZx9b8QYlZD_HMJza_0").enqueue(new Callback<DirectionResponse>() {
                             @Override
                             public void onResponse(Call<DirectionResponse> call, Response<DirectionResponse> response) {
@@ -87,7 +88,7 @@ public class DataHandle {
                                 Log.d(TAG, "onResponse: " + routeModel.distance);
 //                                PolylineOptions polylineOptions = new PolylineOptions().color(Color.RED).width(16);
 
-                                for (int i = 0; i < routeModel.points.size(); i++){
+                                for (int i = 0; i < routeModel.points.size(); i++) {
                                     polylineOptions.add(routeModel.points.get(i));
                                     latLngs.add(routeModel.points.get(i));
                                 }
@@ -115,14 +116,14 @@ public class DataHandle {
 
         return list;
     }
-    public static void Distance(List<HotelModel> list)
-    {
+
+    public static void Distance(List<HotelModel> list) {
         LatLng currentLocation = TurnOnGPSActivity.currentLocation;
         String current = Double.toString(currentLocation.latitude) + "," + Double.toString(currentLocation.longitude);
         String key = "AIzaSyCPHUVwzFXx1bfLxZx9b8QYlZD_HMJza_0";
         String listLocation = "";
 
-        for (int i = 0; i <list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             listLocation = listLocation + Double.toString(list.get(i).viDo) + "," + Double.toString(list.get(i).kinhDo);
             if (i + 1 < list.size()) {
                 listLocation = listLocation + "|";
@@ -136,8 +137,7 @@ public class DataHandle {
                 rows = response.body().rows;
                 if (rows.size() != 0) {
                     for (int i = 0; i < DataHandle.rows.get(0).elements.size(); i++) {
-                        if(DataHandle.rows.get(0).elements.get(i).status.equals("OK"))
-                        {
+                        if (DataHandle.rows.get(0).elements.get(i).status.equals("OK")) {
                             Log.d(TAG, "onResponse: " + DataHandle.rows.get(0).elements.get(i).distance.value);
                         }
 

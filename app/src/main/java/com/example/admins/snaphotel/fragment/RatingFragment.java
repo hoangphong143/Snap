@@ -179,9 +179,13 @@ public class RatingFragment extends Fragment implements View.OnClickListener {
                             } else {
                                 hotelModel.reviewModels.add(review);
                             }
+
+                            hotelModel.danhGiaTB = (hotelModel.danhGiaTB + review.ratting) / hotelModel.reviewModels.size();
+
                             Log.d(TAG, "onClick: " + hotelModel.reviewModels);
                             rvFeedback.setAdapter(new FeedbackAdapter(getContext(), hotelModel.reviewModels));
                             rvFeedback.setLayoutManager(new LinearLayoutManager(getContext()));
+
                             databaseReference.child(hotelModel.key).setValue(hotelModel);
                             tvNoRev.setVisibility(View.GONE);
                             alertDialog.dismiss();

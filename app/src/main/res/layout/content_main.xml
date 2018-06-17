@@ -18,6 +18,16 @@
         android:layout_height="match_parent"
         tools:context="com.example.nguyenducanhit.hotelhunter2.activities.MapsActivity" />
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Huỷ lọc"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:id="@+id/bt_clear_filter"/>
 
 </RelativeLayout>
