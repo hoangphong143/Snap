@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.admins.snaphotel.Activities.MainActivity;
 import com.example.admins.snaphotel.Adapters.FavouriteAdapter;
 import com.example.admins.snaphotel.Model.HotelModel;
 import com.example.nguyenducanhit.hotelhunter2.R;
@@ -51,6 +52,7 @@ public class FavouriteFragment extends Fragment {
         rvFav = view.findViewById(R.id.rv_fav);
         avLoading = view.findViewById(R.id.iv_loading);
         tvNoFavHotel = view.findViewById(R.id.tv_no_fav_hotel);
+        MainActivity.iv_filter.setVisibility(View.INVISIBLE);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -64,6 +66,7 @@ public class FavouriteFragment extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.getChildrenCount() == 0) {
                             tvNoFavHotel.setVisibility(View.VISIBLE);
+                            avLoading.hide();
                         }
                         for (DataSnapshot favSnapshot : dataSnapshot.getChildren()) {
                             String favHuid = favSnapshot.getValue(String.class);
@@ -97,4 +100,10 @@ public class FavouriteFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStop() {
+        MainActivity.iv_filter.setVisibility(View.VISIBLE);
+        super.onStop();
+
+    }
 }

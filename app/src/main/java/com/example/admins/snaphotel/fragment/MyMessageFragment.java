@@ -164,7 +164,6 @@ public class MyMessageFragment extends Fragment {
 
     @Subscribe
     public void loadMessDone(LoadMessageDone loadMessageDone) {
-
         chatModels.addAll(loadMessageDone.chatModels);
         avLoadingIndicatorView.hide();
         rvMess.setAdapter(new ChatAdapter(chatModels, getActivity().getSupportFragmentManager()));

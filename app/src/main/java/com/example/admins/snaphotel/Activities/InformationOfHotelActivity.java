@@ -1,18 +1,22 @@
 package com.example.admins.snaphotel.Activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +27,9 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.admins.snaphotel.Adapters.FavouriteAdapter;
 import com.example.admins.snaphotel.Adapters.ViewPagerAdapter;
 import com.example.admins.snaphotel.Event.OnClickWindowinfo;
+import com.example.admins.snaphotel.Event.SendInfoFragmentToLogin;
 import com.example.admins.snaphotel.Model.HotelModel;
+import com.example.admins.snaphotel.fragment.MyHotelFragment;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -110,6 +116,8 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
 
         checkIfHotelIsFavourite();
 
+        if (FirebaseAuth.getInstance().getCurrentUser()==null) ivFav.setVisibility(View.VISIBLE);
+
         ivFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,6 +138,7 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
                             String favHuid = favSnapshot.getValue(String.class);
                             if (favHuid.equals(hotelModel.key)) {
                                 isFav = true;
+                                ivFav.setImageResource(R.drawable.ic_favorite_black_24dp);
                             }
                         }
                         ivFav.setVisibility(View.VISIBLE);
@@ -152,6 +161,7 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            Log.d(TAG, "onDataChange: ");
                             if (isFav) {
                                 //remove fav
                                 ivFav.setImageResource(R.drawable.ic_favorite_border_black_24dp);
@@ -165,9 +175,14 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
                                 }
                             } else {
                                 ivFav.setImageResource(R.drawable.ic_favorite_black_24dp);
+                                for (DataSnapshot favSnapshot : dataSnapshot.getChildren()) {
+                                    String favHuid = favSnapshot.getValue(String.class);
+                                    newFavHuidList.add(favHuid);
+                                }
                                 newFavHuidList.add(hotelModel.key);
                             }
 
+                            isFav = !isFav;
                             databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .child("favList").setValue(newFavHuidList);
                         }
@@ -178,7 +193,30 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
                         }
                     });
         } else {
-            //todo login
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            LayoutInflater layoutInflater = this.getLayoutInflater();
+            final View dialogView = layoutInflater.inflate(R.layout.require, null);
+            dialogBuilder.setView(dialogView);
+            final AlertDialog alertDialog = dialogBuilder.create();
+            alertDialog.show();
+            Button btYes = dialogView.findViewById(R.id.btn_yes);
+            btYes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG, "onClick: ");
+                    Intent i2 = new Intent(InformationOfHotelActivity.this, LoginActivity.class);
+                    EventBus.getDefault().postSticky(new SendInfoFragmentToLogin(null));
+                    startActivity(i2);
+                    alertDialog.dismiss();
+                }
+            });
+            Button btNo = dialogView.findViewById(R.id.btn_no);
+            btNo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                }
+            });
         }
     }
 
@@ -214,19 +252,5 @@ public class InformationOfHotelActivity extends AppCompatActivity implements Bas
     @Override
     public void onSliderClick(BaseSliderView slider) {
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.detail_menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //todo: favorite
-        return true;
     }
 }

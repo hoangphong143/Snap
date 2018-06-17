@@ -337,6 +337,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @Subscribe (sticky = true)
     public void sendInfoFragToMainToOpen(SendInfoFragmentToLogin sendInfoFragmentToLogin) {
-        EventBus.getDefault().postSticky(new ContinueWithOldFragment(sendInfoFragmentToLogin.fragment));
+        if (sendInfoFragmentToLogin.fragment == null) {
+
+        } else {
+            EventBus.getDefault().postSticky(new ContinueWithOldFragment(sendInfoFragmentToLogin.fragment));
+        }
     }
 }

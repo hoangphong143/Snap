@@ -1,5 +1,6 @@
 package com.example.admins.snaphotel.Adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.admins.snaphotel.Activities.InformationOfHotelActivity;
+import com.example.admins.snaphotel.Activities.MainActivity;
+import com.example.admins.snaphotel.Event.OnClickWindowinfo;
 import com.example.admins.snaphotel.Model.HotelModel;
 import com.example.nguyenducanhit.hotelhunter2.R;
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -49,11 +55,19 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
             tvHotel = itemView.findViewById(R.id.tv_item_fav_hotel);
         }
 
-        public void setData(HotelModel hotelModel) {
+        public void setData(final HotelModel hotelModel) {
             Picasso.with(itemView.getContext()).load(R.drawable.default_hotel)
                     .transform(new CropCircleTransformation())
                     .into(ivHotel);
             tvHotel.setText(hotelModel.nameHotel);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EventBus.getDefault().postSticky(new OnClickWindowinfo(hotelModel));
+                    Intent intent = new Intent(itemView.getContext(), InformationOfHotelActivity.class);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

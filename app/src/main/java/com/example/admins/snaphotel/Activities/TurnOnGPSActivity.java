@@ -50,13 +50,11 @@ public class TurnOnGPSActivity extends AppCompatActivity {
         }
         this.setFinishOnTouchOutside(true);
 
-        // Todo Location Already on  ... start
         final LocationManager manager = (LocationManager) TurnOnGPSActivity.this.getSystemService(Context.LOCATION_SERVICE);
         if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER) && hasGPSDevice(TurnOnGPSActivity.this)) {
             Toast.makeText(TurnOnGPSActivity.this, "Gps already enabled", Toast.LENGTH_SHORT).show();
             finish();
         }
-        // Todo Location Already on  ... end
 
         if (!hasGPSDevice(TurnOnGPSActivity.this)) {
             Toast.makeText(TurnOnGPSActivity.this, "Gps not Supported", Toast.LENGTH_SHORT).show();
@@ -171,13 +169,6 @@ public class TurnOnGPSActivity extends AppCompatActivity {
             }
         };
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 100, locationListener);
