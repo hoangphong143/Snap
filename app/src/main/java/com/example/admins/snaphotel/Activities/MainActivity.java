@@ -34,6 +34,7 @@ import com.example.admins.snaphotel.Model.HotelModel;
 
 import com.example.admins.snaphotel.Ultis.DataHandle;
 import com.example.admins.snaphotel.Ultis.ImageUtils;
+import com.example.admins.snaphotel.fragment.FavouriteFragment;
 import com.example.admins.snaphotel.fragment.MyHotelFragment;
 import com.example.admins.snaphotel.fragment.MyMessageFragment;
 import com.example.nguyenducanhit.hotelhunter2.R;
@@ -300,6 +301,8 @@ public class MainActivity extends AppCompatActivity
             } else {
                 ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new MyMessageFragment());
             }
+        } else if (id==R.id.nav_favourite) {
+            ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new FavouriteFragment());
         }
 
 
