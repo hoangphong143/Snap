@@ -2,64 +2,85 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rl_detail"
     tools:context="com.example.admins.snaphotel.Activities.InformationOfHotelActivity">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:background="@color/yellow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                android:id="@+id/iv_backinfor"
-                android:padding="8dp"
-                />
-            <TextView
-                android:textColor="#fff"
-                android:text="anh"
-                android:layout_marginLeft="8dp"
-                android:textSize="20sp"
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:layout_marginRight="48dp"/>
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/yellow">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_backinfor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_back" />
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:padding="16dp"
+                    android:id="@+id/iv_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_favorite_border_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="4dp"
+                    android:layout_toLeftOf="@id/iv_fav"
+                    android:layout_toRightOf="@id/iv_backinfor"
+                    android:gravity="center_horizontal"
+                    android:text="anh"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+            </RelativeLayout>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slide_hotel"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:id="@+id/slide_hotel"
         android:layout_below="@id/abl_name">
 
     </com.daimajia.slider.library.SliderLayout>
+
     <com.daimajia.slider.library.Indicators.PagerIndicator
         android:id="@+id/custom_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_centerHorizontal="true"
         android:layout_above="@id/vp_fragment"
-        android:layout_marginBottom="55dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
+        android:padding="8dp" />
+
     <android.support.design.widget.TabLayout
-        android:layout_below="@id/slide_hotel"
         android:id="@+id/tab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.design.widget.TabLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_hotel" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_fragment"
-        android:layout_below="@id/tab"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab" />
 </RelativeLayout>

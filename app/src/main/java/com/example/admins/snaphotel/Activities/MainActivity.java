@@ -34,6 +34,7 @@ import com.example.admins.snaphotel.Model.HotelModel;
 
 import com.example.admins.snaphotel.Ultis.DataHandle;
 import com.example.admins.snaphotel.Ultis.ImageUtils;
+import com.example.admins.snaphotel.fragment.FavouriteFragment;
 import com.example.admins.snaphotel.fragment.MyHotelFragment;
 import com.example.admins.snaphotel.fragment.MyMessageFragment;
 import com.example.nguyenducanhit.hotelhunter2.R;
@@ -300,6 +301,34 @@ public class MainActivity extends AppCompatActivity
             } else {
                 ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new MyMessageFragment());
             }
+        } else if (id == R.id.nav_favourite) {
+            if (firebaseAuth.getCurrentUser() == null) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+                LayoutInflater layoutInflater = this.getLayoutInflater();
+                View dialogView = layoutInflater.inflate(R.layout.require, null);
+                dialogBuilder.setView(dialogView);
+                final AlertDialog alertDialog = dialogBuilder.create();
+                alertDialog.show();
+                Button btYes = dialogView.findViewById(R.id.btn_yes);
+                btYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i2 = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i2);
+                        alertDialog.dismiss();
+                    }
+                });
+                Button btNo = dialogView.findViewById(R.id.btn_no);
+                btNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+                EventBus.getDefault().postSticky(new SendInfoFragmentToLogin(new FavouriteFragment()));
+            } else {
+                ImageUtils.openFragment(getSupportFragmentManager(), R.id.rl_main, new FavouriteFragment());
+            }
         }
 
 
@@ -326,21 +355,9 @@ public class MainActivity extends AppCompatActivity
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-
-//                for (int i = 0; i < list.size(); i++) {
-//                    if (marker.getPosition().latitude == list.get(i).viDo && marker.getPosition().longitude == list.get(i).kinhDo) {
-//                        EventBus.getDefault().postSticky(new OnClickWindowinfo(list.get(i)));
-//                        Log.d(TAG, "onInfoWindowClick: " + list.get(i));
-//                    }
-//                }
-
                 EventBus.getDefault().postSticky(new OnClickWindowinfo((HotelModel) marker.getTag()));
-
-                Log.d(TAG, "onInfoWindowClick: " + list.size());
-                Log.d(TAG, "onInfoWindowClick: " + marker.getTag());
                 Intent intent = new Intent(MainActivity.this, InformationOfHotelActivity.class);
                 startActivity(intent);
-//                overridePendingTransition(R.anim.right_to_left, R.anim.left_to_right);
             }
         });
     }
