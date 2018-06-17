@@ -55,7 +55,7 @@ public class ChatFragment extends Fragment {
     UserModel userModel;
     String hotelModelKey;
     LinearLayoutManager linearLayoutManager;
-    MessageAdapter messageAdapter;
+
     List<MessageModel> messageModelList = new ArrayList<>();
 
     boolean isHotel = true;
