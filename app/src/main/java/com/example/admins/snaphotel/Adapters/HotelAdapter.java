@@ -96,46 +96,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewhol
             tvAddress.setText(hotelModel.address);
             rbStar.setRating(hotelModel.danhGiaTB);
             String giaDon = hotelModel.gia.substring(0, hotelModel.gia.indexOf("-"));
-            String giaDoi = hotelModel.gia.substring(hotelModel.gia.indexOf("-")+1);
-            tvPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon))+"VNĐ" +" -  " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi))+ "VNĐ");
+            String giaDoi = hotelModel.gia.substring(hotelModel.gia.indexOf("-") + 1);
+            tvPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon)) + "VNĐ" + " -  " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi)) + "VNĐ");
             ivImage.setImageBitmap(ImageUtils.base64ToImage(hotelModel.images.get(0)));
 
-//            PopupMenu popupMenu = new PopupMenu(context, ivMenu);
-//            popupMenu.inflate(R.menu.main);
-//            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem menuItem) {
-//                    switch (menuItem.getItemId()) {
-//                        case R.id.action_settings:
-//                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-//                            dialogBuilder.setMessage("Bạn chắc chắn muốn xóa?")
-//                                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialog, int which) {
 //
-//
-//                                        }
-//                                    })
-//                                    .setNegativeButton("Không", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialog, int which) {
-//
-//
-//                                        }
-//                                    })
-//                                    .show();
-//                            break;
-//
-//
-//                        case R.id.action_edit:
-//                            ImageUtils.openFragment(fragmentManager ,R.id.rl_main,new EditHotelFragment() );
-//                            EventBus.getDefault().postSticky(new onClickMyHotel(hotelModel));
-//
-//                            break;
-//                    }
-//                    return true;
-//                }
-//            });
 //            popupMenu.show();
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -146,7 +111,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewhol
                 }
             });
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener(){
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
                     Log.d(TAG, "onLongClick: ");
@@ -173,38 +138,9 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewhol
                 }
             });
 
-//            rlMain=itemView.findViewById(R.id.rl_main);
-//            ivMenu.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-//                    @Override
-//                    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-////                    menu.setHeaderTitle("Select The Action");
-
 //
-//                    }
-//            });
-//            itemView.setOnCreateContextMenuListener(this);
-//            tvEdit = itemView.findViewById(R.id.tv_edit);
-//            tvEdit.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-
-
-//                                }
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(DatabaseError databaseError) {
-//
-//                        }
-//                    });
-//
-//                }
-//
-//
-//            });
         }
+
+
     }
-
-
 }

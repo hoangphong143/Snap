@@ -104,14 +104,34 @@
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
 
-            <EditText
-                android:id="@+id/et_giaadd"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
                 android:layout_marginLeft="16dp"
-                android:inputType="numberDecimal"
-                android:layout_marginRight="16dp"
-                android:hint="" />
+                android:layout_marginRight="16dp">
+
+                <EditText
+                    android:id="@+id/et_giagioadd"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:hint="theo giờ"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/et_giademadd"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:hint="theo đêm"
+                    android:inputType="number" />
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

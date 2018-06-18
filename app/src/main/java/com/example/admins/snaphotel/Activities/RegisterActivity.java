@@ -81,24 +81,28 @@ public class RegisterActivity extends AppCompatActivity {
                     tvCheckPass.setVisibility(View.GONE);
                     tvCheckConPass.setVisibility(View.GONE);
                     tvCheckName.setTextColor(Color.RED);
+                    return;
                 } else if (etEmail.getText().toString().equals("")) {
                     tvCheckEmail.setVisibility(View.VISIBLE);
                     tvCheckName.setVisibility(View.GONE);
                     tvCheckPass.setVisibility(View.GONE);
                     tvCheckConPass.setVisibility(View.GONE);
                     tvCheckEmail.setTextColor(Color.RED);
+                    return;
                 } else if (etPassword.getText().toString().equals("")) {
                     tvCheckPass.setVisibility(View.VISIBLE);
                     tvCheckEmail.setVisibility(View.GONE);
                     tvCheckName.setVisibility(View.GONE);
                     tvCheckConPass.setVisibility(View.GONE);
                     tvCheckPass.setTextColor(Color.RED);
+                    return;
                 } else if (!etConfirmPass.getText().toString().equals(etPassword.getText().toString())) {
                     tvCheckConPass.setVisibility(View.VISIBLE);
                     tvCheckEmail.setVisibility(View.GONE);
                     tvCheckPass.setVisibility(View.GONE);
                     tvCheckName.setVisibility(View.GONE);
                     tvCheckConPass.setTextColor(Color.RED);
+                    return;
                 } else {
                     final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
                     progressDialog.setMessage("Đang đăng kí...");
@@ -138,6 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             } else {
                                 Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                progressDialog.hide();
                             }
 
                         }

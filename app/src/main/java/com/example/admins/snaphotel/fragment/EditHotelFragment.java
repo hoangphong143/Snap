@@ -176,7 +176,7 @@ public class EditHotelFragment extends Fragment implements View.OnClickListener 
         etSDT1.setText(hotelModel.phone);
 //        etGiaDem.addTextChangedListener(onTextChangedListener(etGiaDem));
 //        etGiaGio.addTextChangedListener(onTextChangedListener(etGiaGio));
-        etGiaDem.setText(hotelModel.gia);
+        etGiaDem.setText("");
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         AlphaAnimation alpha = new AlphaAnimation(0.1F, 0.1F);

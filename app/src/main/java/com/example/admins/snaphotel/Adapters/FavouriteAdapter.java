@@ -6,22 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.admins.snaphotel.Activities.InformationOfHotelActivity;
-import com.example.admins.snaphotel.Activities.MainActivity;
-import com.example.admins.snaphotel.Event.OnClickWindowinfo;
 import com.example.admins.snaphotel.Model.HotelModel;
+import com.example.admins.snaphotel.Ultis.ImageUtils;
+import com.example.admins.snaphotel.Ultis.OnClickWindowinfo;
 import com.example.nguyenducanhit.hotelhunter2.R;
-import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
-import jp.wasabeef.picasso.transformations.CropCircleTransformation;
-
-public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder>{
+public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder> {
     List<HotelModel> hotelModelList;
 
     public FavouriteAdapter(List<HotelModel> hotelModelList) {
@@ -46,20 +46,29 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
     }
 
     class FavouriteViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivHotel;
-        TextView tvHotel;
+        ImageView ivMenu, ivImage;
+        TextView tvName, tvPrice, tvAddress, tvEdit;
+        RatingBar rbStar;
+        View itemView;
 
         public FavouriteViewHolder(View itemView) {
             super(itemView);
-            ivHotel = itemView.findViewById(R.id.iv_item_fav_hotel);
-            tvHotel = itemView.findViewById(R.id.tv_item_fav_hotel);
+            tvName = itemView.findViewById(R.id.tv_name);
+            tvPrice = itemView.findViewById(R.id.tv_price);
+            tvAddress = itemView.findViewById(R.id.tv_address);
+            ivImage = itemView.findViewById(R.id.iv_image);
+            rbStar = itemView.findViewById(R.id.rb_star);
+            this.itemView = itemView;
         }
 
         public void setData(final HotelModel hotelModel) {
-            Picasso.with(itemView.getContext()).load(R.drawable.default_hotel)
-                    .transform(new CropCircleTransformation())
-                    .into(ivHotel);
-            tvHotel.setText(hotelModel.nameHotel);
+            tvName.setText(hotelModel.nameHotel);
+            tvAddress.setText(hotelModel.address);
+            rbStar.setRating(hotelModel.danhGiaTB);
+            String giaDon = hotelModel.gia.substring(0, hotelModel.gia.indexOf("-"));
+            String giaDoi = hotelModel.gia.substring(hotelModel.gia.indexOf("-") + 1);
+            tvPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDon)) + "VNĐ" + " -  " + NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(giaDoi)) + "VNĐ");
+            ivImage.setImageBitmap(ImageUtils.base64ToImage(hotelModel.images.get(0)));
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -70,4 +79,8 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
             });
         }
     }
+
+    ;
 }
+
+
